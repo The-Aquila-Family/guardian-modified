@@ -905,7 +905,7 @@ def main():
                                 }
                             ]
                         }
-                        answer = prompt(options, style=style)
+                        answer = prompt(options, style = style)
 
                         if not answer or answer['option'] == 'return':
                             os.system('cls')
@@ -1090,7 +1090,7 @@ def main():
         elif option == 'kick_by_ip':
             collector = IPCollector()
             collector.start()
-            for _ in tqdm(range(10), ascii=True, desc='Collecting session'):
+            for _ in tqdm(range(10), ascii = True, desc = 'Collecting session'):
                 time.sleep(1)
             collector.stop()
             ip_set = set(collector.ips)
@@ -1246,8 +1246,7 @@ def main():
                 with open("datacheck.json", "w+") as datafile:
                     json.dump(datas, datafile, indent = 2)
                 print_white('Packing debug request')
-                compressed = zipfile.ZipFile('debugger-{}.zip'.format(time.strftime("%Y%m%d-%H%M%S")), "w",
-                                             zipfile.ZIP_DEFLATED)
+                compressed = zipfile.ZipFile('debugger-{}.zip'.format(time.strftime("%Y%m%d-%H%M%S")), "w", zipfile.ZIP_DEFLATED)
                 compressed.write('datacheck.json')
                 try:
                     compressed.write('debugger.log')
