@@ -428,6 +428,7 @@ def main():
                     try:
                         ip_calc = IPValidator.validate_get(ip)
                         ip_set.add(ip_calc)
+                        logger.info("IP validated from custom list: %s", str(ip_calc))
                     except ValidationError:
                         logger.warning('Not valid IP or URL: {}'.format(ip))
                         print_white('Not valid IP or URL: "' +
@@ -489,7 +490,7 @@ def main():
                 }
                 if not config.get('token'):
                     options['choices'][1]['disabled'] = 'No token'
-                answer = prompt(options, style=style)
+                answer = prompt(options, style = style)
                 if not answer or answer['option'] == 'return':
                     os.system('cls')
                     break
@@ -633,7 +634,7 @@ def main():
                                         ]
                                     }
                                     name = name['name']
-                                    answer = prompt(options, style=style)
+                                    answer = prompt(options, style = style)
                                     if not answer or answer['option'] == 'return':
                                         os.system('cls')
                                         break
