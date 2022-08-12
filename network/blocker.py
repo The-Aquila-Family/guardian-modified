@@ -12,7 +12,7 @@ debug_logger.setLevel(logging.DEBUG)
 if not debug_logger.handlers:
     fh = logging.FileHandler('debugger.log')
     fh.setLevel(logging.DEBUG)
-    fh.setFormatter(logging.Formatter('%(asctime)s|%(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
+    fh.setFormatter(logging.Formatter('%(asctime)s|%(levelname)s: %(message)s', datefmt = '%Y-%m-%d %H:%M:%S'))
     debug_logger.addHandler(fh)
 """
 It appears that there is *ONE* more problem we may need to take care of which was missed during testing of the prototype.
@@ -102,7 +102,7 @@ class Whitelist(object):
         :param list ips:
         """
         self.ips = ips
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
 
     def start(self):
@@ -114,7 +114,6 @@ class Whitelist(object):
         logger.info('Terminated whitelist blocker process')
 
     def run(self):
-
         print("ips: " + str(self.ips))
         if not pydivert.WinDivert.is_registered():
             pydivert.WinDivert.register()
@@ -151,7 +150,7 @@ class Blacklist(object):
         :param list ips:
         """
         self.ips = ips
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
 
     def start(self):
@@ -197,7 +196,7 @@ class Locked(object):
     def __init__(self):
         # Locked sessions don't have a list of IPs.
 
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
 
     def start(self):
@@ -241,7 +240,7 @@ class LockedWhitelist(object):
     def __init__(self, ips):
 
         self.ips = ips
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
 
     def start(self):
@@ -289,7 +288,7 @@ class IPSyncer(object):
         :param token: Cloud api token
         """
         self.token = token
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.exit = multiprocessing.Event()
 
     def start(self):
@@ -344,7 +343,7 @@ class Debugger(object):
 
     def __init__(self, ips):
         self.ips = ips
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
 
     def start(self):
@@ -399,7 +398,7 @@ class IPCollector(object):
     """
 
     def __init__(self):
-        self.process = multiprocessing.Process(target=self.run, args=())
+        self.process = multiprocessing.Process(target = self.run, args = ())
         self.process.daemon = True
         self.ips = multiprocessing.Manager().list()
 

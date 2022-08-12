@@ -9,14 +9,14 @@ class Cloud:
     def __init__(self, token=None):
         self.token = token
 
-    def _send_request(self, method, endpoint, params=None, payload=None, **kwargs):
+    def _send_request(self, method, endpoint, params = None, payload = None, **kwargs):
         resp, resp_text = None, None
         url = self.api_url.format(endpoint)
         headers = {'User-Agent': 'Guardian/{})'.format(version),
                    'Content-Type': 'application/json; charset=UTF-8',
                    'Authorization': self.token if self.token else None}
         for _ in range(3):
-            resp = s.request(method=method, url=url, params=params, json=payload, headers=headers, **kwargs)
+            resp = s.request(method = method, url = url, params = params, json = payload, headers = headers, **kwargs)
             if resp.status_code != 502:  # Retry on error 502 "Bad Gateway"
                 break
 
@@ -59,9 +59,7 @@ class Cloud:
             return None
 
     def request(self, name):
-        param = {
-            'name': name
-        }
+        param = { 'name': name }
         try:
             code, r = self._send_request('POST', 'guardian/request', params=param)
             return code == 200, r.get('error', None)
@@ -69,9 +67,7 @@ class Cloud:
             return False, None
 
     def revoke(self, name):
-        param = {
-            'name': name
-        }
+        param = { 'name': name }
         try:
             code, r = self._send_request('POST', 'guardian/revoke', params=param)
             return code == 200, r.get('error', None)
@@ -79,9 +75,7 @@ class Cloud:
             return False, None
 
     def accept(self, name):
-        param = {
-            'name': name
-        }
+        param = { 'name': name }
         try:
             code, r = self._send_request('POST', 'guardian/accept', params=param)
             return code == 200, r.get('error', None)
